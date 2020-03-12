@@ -113,7 +113,6 @@
     <Compile Include="Infrastructure\Common\IImageHolder.cs" />
     <Compile Include="Infrastructure\Common\IImageSettingsProvider.cs" />
     <Compile Include="Infrastructure\Common\ImageSettings.cs" />
-    <Compile Include="Infrastructure\Injection\INeed.cs" />
     <Compile Include="Infrastructure\Common\IObjectSerializer.cs" />
     <Compile Include="Infrastructure\UiActions\IUiAction.cs" />
     <Compile Include="Infrastructure\Common\Palette.cs" />

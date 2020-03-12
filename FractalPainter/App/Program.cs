@@ -26,6 +26,11 @@ namespace FractalPainting.App
                 container.Bind<IImageHolder, PictureBoxImageHolder>()
                     .To<PictureBoxImageHolder>()
                     .InSingletonScope();
+                container.Bind<IObjectSerializer>().To<XmlObjectSerializer>();
+                container.Bind<IBlobStorage>().To<FileBlobStorage>();
+                container.Bind<AppSettings, IImageSettingsProvider, IImageDirectoryProvider>()
+                    .ToMethod( context => container.Get<SettingsManager>().Load() );
+ 
                 
                 container.Bind<Palette>().ToSelf().InSingletonScope();
                 container.Bind<IDragonPainterFactory>().ToFactory();
