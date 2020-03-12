@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using FractalPainting.Infrastructure.Common;
-using FractalPainting.Infrastructure.Injection;
 using FractalPainting.Infrastructure.UiActions;
 
 namespace FractalPainting.App.Actions
@@ -35,5 +34,8 @@ namespace FractalPainting.App.Actions
             if (res == DialogResult.OK)
                 imageHolder.SaveImage(dialog.FileName);
         }
+        
+        public int Order { get; } = 1;
+
     }
 }

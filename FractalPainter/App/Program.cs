@@ -5,6 +5,7 @@ using FractalPainting.App.Fractals;
 using FractalPainting.Infrastructure.Common;
 using FractalPainting.Infrastructure.UiActions;
 using Ninject;
+using Ninject.Extensions.Conventions;
 using Ninject.Extensions.Factory;
 
 namespace FractalPainting.App
@@ -20,28 +21,27 @@ namespace FractalPainting.App
             try
             {
                 var container = new StandardKernel();
+                container.Bind(x => x
+                    .FromThisAssembly()
+                    .SelectAllClasses()
+                    .BindAllInterfaces());
 
                 // start here
-                container.Bind<ImageSettings>().ToSelf().InSingletonScope();
-                container.Bind<IImageHolder, PictureBoxImageHolder>()
+                container.Rebind<ImageSettings>().ToSelf().InSingletonScope();
+                container.Rebind<IImageHolder, PictureBoxImageHolder>()
                     .To<PictureBoxImageHolder>()
                     .InSingletonScope();
-                container.Bind<IObjectSerializer>().To<XmlObjectSerializer>();
-                container.Bind<IBlobStorage>().To<FileBlobStorage>();
-                container.Bind<AppSettings, IImageSettingsProvider, IImageDirectoryProvider>()
-                    .ToMethod( context => container.Get<SettingsManager>().Load() );
- 
-                
-                container.Bind<Palette>().ToSelf().InSingletonScope();
-                container.Bind<IDragonPainterFactory>().ToFactory();
+                container.Rebind<IObjectSerializer>().To<XmlObjectSerializer>();
+                container.Rebind<IBlobStorage>().To<FileBlobStorage>();
+                container.Rebind<AppSettings, IImageDirectoryProvider>()
+                    .ToMethod(context => container.Get<SettingsManager>().Load());
 
-                container.Bind<IUiAction>().To<SaveImageAction>();
-                container.Bind<IUiAction>().To<DragonFractalAction>();
-                container.Bind<IUiAction>().To<KochFractalAction>();
-                container.Bind<IUiAction>().To<ImageSettingsAction>();
-                container.Bind<IUiAction>().To<PaletteSettingsAction>();
 
-               // container.Bind<KochPainter>().ToSelf().InSingletonScope();
+                container.Rebind<Palette>().ToSelf().InSingletonScope();
+                container.Rebind<IDragonPainterFactory>().ToFactory();
+
+
+                // container.Bind<KochPainter>().ToSelf().InSingletonScope();
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -50,7 +50,7 @@ namespace FractalPainting.App
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                
+
                 throw;
             }
         }
