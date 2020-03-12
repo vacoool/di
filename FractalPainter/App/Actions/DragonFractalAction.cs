@@ -25,6 +25,7 @@ namespace FractalPainting.App.Actions
         public string Category => "Фракталы";
         public string Name => "Дракон";
         public string Description => "Дракон Хартера-Хейтуэя";
+        public int Order => 2;
 
         public void Perform()
         {
@@ -34,9 +35,6 @@ namespace FractalPainting.App.Actions
 
             dragonPainterFactory(dragonSettings).Paint();
         }
-
-        public int Order { get; } = 2;
-
         private static DragonSettings CreateRandomSettings()
         {
             return new DragonSettingsGenerator(new Random()).Generate();

@@ -19,6 +19,7 @@ namespace FractalPainting.App.Actions
         public string Category => "Файл";
         public string Name => "Сохранить...";
         public string Description => "Сохранить изображение в файл";
+        public int Order => 1;
 
         public void Perform()
         {
@@ -34,8 +35,6 @@ namespace FractalPainting.App.Actions
             if (res == DialogResult.OK)
                 imageHolder.SaveImage(dialog.FileName);
         }
-        
-        public int Order { get; } = 1;
 
     }
 }

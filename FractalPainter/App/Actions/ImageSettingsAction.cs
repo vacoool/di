@@ -17,6 +17,7 @@ namespace FractalPainting.App.Actions
         public string Category => "Настройки";
         public string Name => "Изображение...";
         public string Description => "Размеры изображения";
+        public int Order => 4;
 
         public void Perform()
         {
@@ -24,7 +25,5 @@ namespace FractalPainting.App.Actions
             SettingsForm.For(imageSettings).ShowDialog();
             imageHolder.RecreateImage(imageSettings);
         }
-
-        public int Order { get; } = 4;
     }
 }

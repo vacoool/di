@@ -17,10 +17,10 @@ namespace FractalPainting.App.Actions
         public string Name => "Кривая Коха";
         public string Description => "Кривая Коха";
 
+        public int Order => 3;
+
         public void Perform() =>
             kochPainter.Paint();
-        
-        public int Order { get; } = 3;
 
     }
 }
