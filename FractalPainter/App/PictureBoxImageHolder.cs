@@ -8,6 +8,7 @@ namespace FractalPainting.App
 {
     public class PictureBoxImageHolder : PictureBox, IImageHolder
     {
+
         public Size GetImageSize()
         {
             FailIfNotInitialized();
